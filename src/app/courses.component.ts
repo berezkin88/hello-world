@@ -1,5 +1,5 @@
 import { CoursesService } from './courses.service';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { faStar as fasStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 
@@ -7,15 +7,22 @@ import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
   selector: 'courses',
   template: `
   <fa-icon [icon]="isActive ? fasStar : farStar" (click)="onClick();"></fa-icon>
-  `
+  `,
+  styleUrls: ['./courses.component.sass']
 })
 export class CoursesComponent {
-  isActive = false;
+  @Input('is-active') isActive: boolean;
+  @Output('change') click = new EventEmitter();
   fasStar = fasStar;
   farStar = farStar;
-  
-  onClick() {
+
+  onClick(): void {
     this.isActive = !this.isActive;
-    console.log("Changed");
+    this.click.emit({ newValue: this.isActive });
+    console.log('Changed');
   }
+}
+
+export interface ActiveChangeEventArgs {
+  newValue: boolean;
 }

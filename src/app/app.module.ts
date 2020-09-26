@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TitleCasingComponent } from './title-casing/title-casing.component';
 import { CustomTitleCase } from './custom-title-case.pipe';
+import { PanelComponent } from './panel/panel.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CustomTitleCase } from './custom-title-case.pipe';
     CourseComponent,
     SummaryPipe,
     CustomTitleCase,
-    TitleCasingComponent
+    TitleCasingComponent,
+    PanelComponent
   ],
   imports: [
     BrowserModule,
