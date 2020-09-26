@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ActiveChangeEventArgs } from './courses.component';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +6,9 @@ import { ActiveChangeEventArgs } from './courses.component';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  post = {
-    title: 'Title',
-    isActive: true
+  tweet = {
+    body: 'Here is the body of a tweet...',
+    isLiked: true,
+    likesCount: 11
   };
-
-  onActiveChange(eventArgs: ActiveChangeEventArgs): void {
-    console.log('Active Changed: ', eventArgs);
-  }
 }

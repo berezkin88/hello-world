@@ -1,10 +1,4 @@
 <h1>Angular</h1>
-<!-- <title-casing></title-casing> -->
-<!-- <courses [is-active]="post.isActive" (change)="onActiveChange($event)"></courses> -->
-<bootstrap-panel>
-    <ng-container class="heading">Heading</ng-container>
-    <div class="body">
-        <h2>Body</h2>
-        <p>Some content here...</p>
-    </div>
-</bootstrap-panel>
+<like
+    [likesCount]="tweet.likesCount"
+    [isActive]="tweet.isLiked"></like>
