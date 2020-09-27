@@ -1,0 +1,9 @@
+<div class="zippy">
+    <div class="zippy-heading" (click)="onClick()">
+        {{ title }}
+        <fa-icon [icon]="isClicked ? chevronDown : chevronUp"></fa-icon>
+    </div>
+    <div class="zippy-content" [hidden]="!isClicked">
+        <ng-content></ng-content>
+    </div>
+</div>
