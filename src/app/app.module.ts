@@ -70,7 +70,7 @@ import { GithubFollowersPageComponent } from './github-followers-page/github-fol
         component: HomeComponent 
       },
       {
-        path: 'followers/:id',
+        path: 'followers/:id/:username',
         component: GithubProfileComponent
       },
       {

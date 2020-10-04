@@ -1,6 +1,15 @@
 <nav class="navbar navbar-light bg-light">
   <form class="form-inline">
-    <a routerLinkActive="active current" routerLink="/followers" class="btn btn-sm btn-outline-secondary" type="button">Followers</a>
-    <a routerLinkActive="active current" routerLink="/posts" class="btn btn-sm btn-outline-secondary" type="button">Posts</a>
+    <a 
+      routerLinkActive="active current" 
+      routerLink="/followers" 
+      class="btn btn-sm btn-outline-secondary" 
+      type="button"
+      [queryParams]="{ page: 1, order: 'newest'}">
+      Followers
+    </a>
+    <a routerLinkActive="active current" routerLink="/posts" class="btn btn-sm btn-outline-secondary" type="button">
+      Posts
+    </a>
   </form>
 </nav>

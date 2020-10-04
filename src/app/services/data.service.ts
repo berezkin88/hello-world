@@ -29,8 +29,8 @@ export class DataService {
 
     delete(id) {
         return throwError(new AppError());
-        // return this.http.delete(this.url + '/' + id)
-        //     .pipe(catchError(this.handleError));
+        return this.http.delete(this.url + '/' + id)
+            .pipe(catchError(this.handleError));
     }
 
     private handleError(error: Response): Observable<never> {
