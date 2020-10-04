@@ -1,3 +1,9 @@
+import { RouterModule } from '@angular/router';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { GithubProfileComponent } from './github-profile/github-profile.component';
+import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FollowersService } from './services/followers.service';
 import { AppErrorHandler } from './common/app-error-handler';
 import { ErrorHandler } from '@angular/core';
 import { SummaryPipe } from './summary.pipe';
@@ -25,6 +31,7 @@ import { NewCourseFormComponent } from './new-course-form/new-course-form.compon
 import { ChangePasswordFormComponent } from './change-password-form/change-password-form.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostService } from './services/post.service';
+import { GithubFollowersPageComponent } from './github-followers-page/github-followers-page.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +50,12 @@ import { PostService } from './services/post.service';
     CourseFormComponent,
     NewCourseFormComponent,
     ChangePasswordFormComponent,
-    PostsComponent
+    PostsComponent,
+    GithubFollowersPageComponent,
+    NavbarComponent,
+    HomeComponent,
+    GithubProfileComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -51,11 +63,34 @@ import { PostService } from './services/post.service';
     FormsModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        component: HomeComponent 
+      },
+      {
+        path: 'followers/:id',
+        component: GithubProfileComponent
+      },
+      {
+        path: 'followers',
+        component: GithubFollowersPageComponent
+      },
+      {
+        path: 'posts',
+        component: PostsComponent 
+      },
+      {
+        path: '**',
+        component: NotFoundComponent
+      }
+    ])
   ],
   providers: [
     CoursesService,
     PostService,
+    FollowersService,
     {
       provide: ErrorHandler,
       useClass: AppErrorHandler
