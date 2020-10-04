@@ -15,14 +15,10 @@ export class PostsComponent implements OnInit {
   constructor(private service: PostService) { }
 
   ngOnInit(): void {
-    this.service.getPosts()
+    this.service.getAll()
       .subscribe(
         response => {
           this.posts = response;
-        },
-        error => {
-          alert('An unexpected error occurred');
-          console.log(error);
         });
   }
 
@@ -30,50 +26,48 @@ export class PostsComponent implements OnInit {
     let post: any = {
       title: input.value
     };
+    this.posts.splice(0, 0, post);
+
     input.value = '';
 
-    this.service.createPost(post)
+    this.service.create(post)
       .subscribe(
         response => {
           post['id'] = response.id;
-          this.posts.splice(0, 0, post);
           console.log(response);
         },
         (error: AppError) => {
+          this.posts.splice(0, 1);
+
           if (error instanceof AppBadRequestError) {
             alert('Bad request');
           } else {
-            alert('An unexpected error occurred');
-            console.log(error);
+            throw error;
           }
         });
   }
 
   updatePost(post) {
-    this.service.updatePost(post)
+    this.service.update(post)
       .subscribe(
         response => {
           console.log(response);
-        },
-        error => {
-          alert('An unexpected error occurred');
-          console.log(error);
         });
   }
 
   deletePost(post) {
-    this.service.deletePost(post.id)
+    let index = this.posts.indexOf(post);
+    this.posts.splice(index, 1);
+
+    this.service.delete(post.id)
       .subscribe(
-        response => {
-          let index = this.posts.indexOf(post);
-          this.posts.splice(index, 1);
-        },
+        () => {},
         (error: AppError) => {
+          this.posts.splice(index, 0, post);
           if (error instanceof NotFoundError) {
             alert('This post has already been deleted');
           } else {
-            alert('An unexpected error occurred');
-            console.log(error);
+            throw error;
           }
         });
   }
